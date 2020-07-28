@@ -49,9 +49,8 @@ router.post(
     "/post",
     loggedIn,
     [
-        // username must be an email
         body("title").notEmpty(),
-        // password must be at least 5 chars long
+        body("description").notEmpty(),
         body("content").notEmpty(),
     ],
     async (req: Request, res: Response) => {

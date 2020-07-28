@@ -101,8 +101,7 @@ router.post("/user", async (req, res, next) => {
         if (err) return next(err);
         if (!user) return res.status(404).json({ message: "User not found" });
         req.logIn(user, function (err) {
-            if (err)
-                return res.status(401).json({ message: "Invalid credentials" });
+            if (err) return res.status(401).json({ message: "Invalid credentials"})
 
             // If this function gets called, authentication was successful.
             // `req.user` contains the authenticated user.
