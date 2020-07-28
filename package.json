@@ -7,7 +7,7 @@
     "scripts": {
         "build": "tsc -p ./tsconfig.json",
         "dev": "nodemon",
-        "start": "ts-node src/server.ts"
+        "start": "ts-node --files src/server.ts"
     },
     "keywords": [],
     "author": "Theo Paris",

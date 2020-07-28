@@ -64,12 +64,18 @@ export function loggedIn(req: Request, res: Response, next: NextFunction) {
 }
 
 /**
+ * Retrieves the user from the database using the username from the request's session.
+ */
+export async function getSessionUser(req: Request) {
+    return await User.findOne({ username: req.user.username });
+}
+
+/**
  * Assumes the user is already logged in and their session is valid
  */
 export const hasRole = async (req, role): Promise<boolean> => {
-    return (await User.findOne({ username: req.session.user.username }))
-        .get("roles")
-        .includes(role);
+    const user = await getSessionUser(req);
+    return user.get("roles").includes(role);
 };
 
 export const initializePassport = (passport: PassportStatic) => {

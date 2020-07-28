@@ -25,7 +25,7 @@ router.get('/test', async (req, res) => {
 
 router.get('/', async (req, res) => {
   const products = await getProducts()
-  res.render('store/store', { user: req.session.user, products })
+  res.render('store/store', { user: req.user, products })
 })
  */
 export const storeRouter = router

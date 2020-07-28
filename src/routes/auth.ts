@@ -1,11 +1,7 @@
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
-import {
-    User,
-    permissionLevels,
-    loggedIn,
-} from "../config";
+import { User, permissionLevels, loggedIn } from "../config";
 import { getGoogleAccountFromCode } from "../google-util";
 import { PassportLocalDocument } from "mongoose";
 
@@ -25,7 +21,7 @@ const router = express.Router();
                 existing.set("name", google.name);
                 await existing.save();
 
-                req.session.user = existing;
+                req.user = existing;
                 req.session.google = google;
                 req.session.save(() => {
                     res.redirect("/dashboard");
@@ -37,12 +33,12 @@ const router = express.Router();
                     picture: google.picture,
                 });
                 if (user) {
-                    req.session.user = user;
+                    req.user = user;
                     req.session.save(() => {
                         res.redirect("/dashboard");
                     });
                 } else {
-                    req.session.user = null;
+                    req.user = null;
                     req.session.save(() => {
                         res.redirect("/dashboard");
                     });
@@ -56,7 +52,10 @@ const router = express.Router();
 
 // User Profile
 router.post("/profile", loggedIn, async (req: Request, res: Response) => {
-    res.json({ username: req.user.username, picture: req.user.picture });
+    res.json({
+        username: req.user.username,
+        picture: req.user.picture,
+    });
 });
 
 // Registration
@@ -68,7 +67,7 @@ router.post(
         // password must be at least 5 chars long
         body("password").isLength({ min: 5 }).notEmpty(),
     ],
-    async (req, res) => {
+    async (req: Request, res: Response) => {
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -83,9 +82,8 @@ router.post(
                 }),
                 req.body.password,
             );
-            User.authenticate()(req, res, () => {
-                res.json(user);
-            });
+            // await User.authenticate()(req.body.u);
+            res.json(user);
         } catch (err) {
             res.status(500).json({ message: err.toString() });
         }
