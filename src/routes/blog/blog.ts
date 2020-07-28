@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 
 import { body, validationResult } from "express-validator";
 import { Post, hasRole, permissionLevels, loggedIn } from "../../config";
@@ -20,57 +20,59 @@ router.get("/posts", async (req, res) => {
     res.json(posts);
 });
 
-router.get("/post", async (req, res) => {
-    const post = await Post.findOne({ title: req.query.title || "" });
+router.get("/post/:id", async (req: Request, res: Response) => {
+    const post = await Post.findOne({ _id: req.params.id || "" });
     res.json(post);
 });
 
-router.delete(
-    "/admin/deletePost",
-    authenticate("jwt", { session: true }),
-    async (req, res) => {
-        if (await hasRole(req, permissionLevels.writer))
-            return res.status(400).json({
-                message: "You do not have permission to perform this action.",
-            });
+router.get("/posts", async (_, res: Response) => {
+    const post = await Post.findOne({});
+    res.json(post);
+});
 
-        const result = await Post.remove(req.body);
-        res.json(result);
-    },
-);
+router.delete("/post", loggedIn, async (req: Request, res: Response) => {
+    if (!(await hasRole(req, permissionLevels.writer)))
+        return res.status(400).json({
+            message: "You do not have permission to perform this action.",
+        });
+
+    const result = await Post.remove(req.body);
+    res.json(result);
+});
 
 router.post(
-    "/admin/createPost",
-    authenticate("jwt", { session: true }),
+    "/post",
+    loggedIn,
     [
         // username must be an email
         body("title").notEmpty(),
         // password must be at least 5 chars long
         body("content").notEmpty(),
     ],
-    async (req, res) => {
-        if (await hasRole(req, permissionLevels.writer))
+    async (req: Request, res: Response) => {
+        if (!(await hasRole(req, permissionLevels.writer)))
             return res.status(400).json({
                 message: "You do not have permission to perform this action.",
             });
         // TODO: use express-validator
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res
-                .status(422)
-                .json({
-                    errors: errors.array(),
-                    message: "Invalid post details",
-                });
+            return res.status(422).json({
+                errors: errors.array(),
+                message: "Invalid post details",
+            });
         }
         req.body.createdAt = new Date();
         req.body.author = req.user.username;
-        Post.update(
-            { title: req.body.title },
-            { $setOnInsert: req.body },
-            { upsert: true },
-        )
-            .then(() => res.status(201).json({ message: "Post added" }))
+        Post.findOneAndUpdate({ title: req.body.title }, req.body, {
+            upsert: true,
+            useFindAndModify: false,
+        })
+            .then(async (post) =>
+                res
+                    .status(201)
+                    .json({ message: "Post created or updated", post: post.toJSON() }),
+            )
             .catch((err) => res.status(500).json({ message: err.toString() }));
     },
 );

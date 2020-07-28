@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
-import { User, permissionLevels, loggedIn } from "../config";
+import { User, permissionLevels, loggedIn, stripCredentials } from "../config";
 import { getGoogleAccountFromCode } from "../google-util";
 import { PassportLocalDocument } from "mongoose";
+import passport from "passport";
 
 const router = express.Router();
 /* router.get("/google", async (req, res) => {
@@ -64,8 +65,7 @@ router.post(
     [
         // username must be an email
         body("username").isEmail().notEmpty(),
-        // password must be at least 5 chars long
-        body("password").isLength({ min: 5 }).notEmpty(),
+        body("password").notEmpty(),
     ],
     async (req: Request, res: Response) => {
         // Finds the validation errors in this request and wraps them in an object with handy functions
@@ -96,47 +96,19 @@ router.get("/logout", (req, res) => {
 });
 
 // Login
-router.post(
-    "/user",
-    [body("username").isEmail().notEmpty(), body("password").notEmpty()],
-    async (req: Request, res: Response) => {
-        try {
-            // Finds the validation errors in this request and wraps them in an object with handy functions
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(422).json({ errors: errors.array() });
-            }
+router.post("/user", async (req, res, next) => {
+    passport.authenticate("local", (err, user) => {
+        if (err) return next(err);
+        if (!user) return res.status(404).json({ message: "User not found" });
+        req.logIn(user, function (err) {
+            if (err)
+                return res.status(401).json({ message: "Invalid credentials" });
 
-            const user = await User.findOne({
-                username: req.body.username,
-            }).exec();
-
-            if (user === null)
-                res.status(404).json({ message: "User not found" });
-
-            const success = !(await (
-                await (user as PassportLocalDocument).authenticate(
-                    req.body.password,
-                )
-            ).error);
-            if (success) {
-                const token = jwt.sign({ user }, "12 34", {
-                    expiresIn: 3600, // 1week  604800
-                });
-                // TODO: strip password from user response
-                res.status(200).json({
-                    success: true,
-                    token,
-                    user,
-                });
-            }
-        } catch (err) {
-            res.status(401).json({
-                message: "Invalid credentials",
-                errors: err,
-            });
-        }
-    },
-);
+            // If this function gets called, authentication was successful.
+            // `req.user` contains the authenticated user.
+            res.json({ user: stripCredentials(req.user) });
+        });
+    })(req, res, next);
+});
 
 export const authRouter = router;

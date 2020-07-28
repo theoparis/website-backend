@@ -28,16 +28,11 @@ app.use(
     session({
         secret: "12 34",
         resave: true,
-        saveUninitialized: true,
-        cookie: {
-            domain: ".theoparis.com",
-            // maxAge: 86400000, // one day
-            httpOnly: false,
-            path: "/",
-        },
+        saveUninitialized: true
     }),
 );
 app.use(passport.initialize());
+// persistent login sessions
 app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

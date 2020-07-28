@@ -45,6 +45,7 @@ const PostSchema = new Schema({
     content: { type: String, required: true },
     createdAt: { type: Date, required: true },
     author: { type: String, required: true },
+    category: { type: String, required: false },
     description: { type: String, required: true },
 });
 
@@ -59,22 +60,37 @@ export const User = mongoose.model("User", UserSchema as PassportLocalSchema);
 export const Post = mongoose.model("Post", PostSchema);
 export const Project = mongoose.model("Project", ProjectSchema);
 
-export function loggedIn(req: Request, res: Response, next: NextFunction) {
-    return authenticate("jwt", { session: true });
+export async function loggedIn(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) {
+    if (req.isAuthenticated()) {
+        req.session.isAuthenticated = true;
+        return next();
+    } else return res.status(401).json({ message: "Not logged in" });
 }
+
+export const stripCredentials = (user: any) => ({
+    username: user.username,
+    roles: user.roles,
+    providers: user.providers,
+    _id: user._id,
+});
 
 /**
  * Retrieves the user from the database using the username from the request's session.
  */
 export async function getSessionUser(req: Request) {
-    return await User.findOne({ username: req.user.username });
+    return await User.findById(req.user._id);
 }
 
 /**
  * Assumes the user is already logged in and their session is valid
  */
-export const hasRole = async (req, role): Promise<boolean> => {
+export const hasRole = async (req: Request, role): Promise<boolean> => {
     const user = await getSessionUser(req);
+    if (!user) return false;
     return user.get("roles").includes(role);
 };
 
@@ -85,28 +101,6 @@ export const initializePassport = (passport: PassportStatic) => {
     // use static serialize and deserialize of model for passport session support
     passport.serializeUser(User.serializeUser());
     passport.deserializeUser(User.deserializeUser());
-
-    const opts = {
-        jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("Bearer"),
-        secretOrKey: "12 34",
-        issuer: "theoparis.com",
-        audience: "theoparis.com",
-    };
-    passport.use(
-        new JwtStrategy(opts, function (jwt_payload, done) {
-            User.findOne({ id: jwt_payload.sub }, function (err, user) {
-                if (err) {
-                    return done(err, false);
-                }
-                if (user) {
-                    return done(null, user);
-                } else {
-                    return done(null, false);
-                    // or you could create a new account
-                }
-            });
-        }),
-    );
 };
 
 /* // TODO; make this optional
