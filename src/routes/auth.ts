@@ -53,7 +53,7 @@ const router = express.Router();
 
 // User Profile
 router.post("/profile", loggedIn, async (req: Request, res: Response) => {
-    res.json(stripCredentials(req.user));
+    res.json({ user: stripCredentials(req.user) });
 });
 
 // Registration
@@ -79,7 +79,7 @@ router.post(
                 }),
                 req.body.password,
             );
-            res.json(user);
+            res.json({ user: stripCredentials(user) });
         } catch (err) {
             res.status(500).json({ message: err.toString() });
         }
