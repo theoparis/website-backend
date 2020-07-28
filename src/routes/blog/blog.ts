@@ -17,16 +17,21 @@ router.get("/posts", async (req, res) => {
                     .toLowerCase()
                     .includes(req.query.search as string),
         );
+    if (req.query.date)
+        posts = posts.filter((p) => {
+            return p.get("createdAt").toString() === (req.query.date as string);
+        });
+    if (req.query.category)
+        posts = posts.filter((p) => {
+            return (
+                p.get("category").toString() === (req.query.category as string)
+            );
+        });
     res.json(posts);
 });
 
 router.get("/post/:id", async (req: Request, res: Response) => {
     const post = await Post.findOne({ _id: req.params.id || "" });
-    res.json(post);
-});
-
-router.get("/posts", async (_, res: Response) => {
-    const post = await Post.findOne({});
     res.json(post);
 });
 
@@ -62,16 +67,16 @@ router.post(
                 message: "Invalid post details",
             });
         }
-        req.body.createdAt = new Date();
+        req.body.createdAt = new Date().getTime();
         req.body.author = req.user.username;
-        Post.findOneAndUpdate({ title: req.body.title }, req.body, {
+        Post.updateOne({ title: req.body.title }, req.body, {
             upsert: true,
-            useFindAndModify: false,
         })
-            .then(async (post) =>
-                res
-                    .status(201)
-                    .json({ message: "Post created or updated", post: post.toJSON() }),
+            .then(async (result) =>
+                res.status(201).json({
+                    message: "Post created or updated",
+                    result,
+                }),
             )
             .catch((err) => res.status(500).json({ message: err.toString() }));
     },

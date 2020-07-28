@@ -43,7 +43,7 @@ UserSchema.plugin(passportLocalMongoose);
 const PostSchema = new Schema({
     title: { type: String, required: true },
     content: { type: String, required: true },
-    createdAt: { type: Date, required: true },
+    createdAt: { type: Number, required: true },
     author: { type: String, required: true },
     category: { type: String, required: false },
     description: { type: String, required: true },
