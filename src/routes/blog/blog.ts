@@ -68,6 +68,7 @@ router.post(
         }
         req.body.createdAt = new Date().getTime();
         req.body.author = req.user.username;
+        if (!req.body.category) req.body.category = "Uncategorized";
         Post.updateOne({ title: req.body.title }, req.body, {
             upsert: true,
         })

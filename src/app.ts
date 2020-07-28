@@ -23,12 +23,34 @@ If we don't use this, accessing the api from the frontend
 will give us a cross origin (cors) error because they are on different ports.
 Also has to be one of the first routes in order for it to work.
 */
-app.use(cors());
+const allowedOrigins: string[] = [
+    "localhost:8080",
+    "localhost:3000",
+    "theoparis.com",
+    "api.theoparis.com",
+];
+app.use(
+    cors({
+        credentials: true,
+        origin: (origin, callback) => {
+            // allow requests with no origin
+            // (like mobile apps or curl requests)
+            if (!origin) return callback(null, true);
+            if (allowedOrigins.includes(origin)) {
+                var msg =
+                    "The CORS policy for this site does not " +
+                    "allow access from the specified Origin.";
+                return callback(new Error(msg), false);
+            }
+            return callback(null, true);
+        },
+    }),
+);
 app.use(
     session({
         secret: "12 34",
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
     }),
 );
 app.use(passport.initialize());
