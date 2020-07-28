@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Blog Index -->
+
+<head></head>
+<%- include("../../../components/scripts") %>
+    <title>Blog Admin - Create Post</title>
+    </head>
+
+    <body>
+        <%- include("../../../components/header") %>
+            <main class="container">
+                <h2>Create Post</h2>
+                <form id="create-post">
+                    <div class="form-group">
+                        <label for="title">Post title</label>
+                        <input class="form-control" type="text" id="title" name="title" required placeholder="Enter post title">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Post content</label>
+                        <textarea class="form-control" id="content" name="content" required placeholder="Enter post content (can be html)"></textarea>
+                    </div>
+                    <input type="submit" class="form-control btn btn-primary" value="Create">
+                </form>
+            </main>
+            <!-- Includes Components Such As Header -->
+            <script src="/js/index.js"></script>
+            <script src="/js/blog-create.js"></script>
+    </body>
+
+</html>

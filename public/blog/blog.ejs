@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Blog Index -->
+
+  <head>
+    <%- include("../components/scripts") %>
+  </head>
+
+  <body>
+    <!-- include(Header and Scripts -->
+    <%- include("../components/header") %>
+    <main class="container" id="posts-container">
+      <% if(posts != null && posts.length == 0) { %>
+      <h2>Nothing to see here.</h2>
+      <p>Check back later for more posts!</p>
+      <% } %> <% posts.forEach(post => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <a href="/blog/indiv/<%= post.title %>">
+            <h4 class="card-title post-title">
+              <%= post.title %>
+            </h4>
+          </a>
+          <div class="card-subtitle mb-2">
+            <%= post.createdAt.toLocaleDateString() %><br />
+            Author: <%= post.author %>
+          </div>
+          <div class="card-text post-content">
+            <%= (post.content.length > 150) ? post.content.substr(0, 150-1) +
+            "..." : post.content %>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </main>
+  </body>
+</html>

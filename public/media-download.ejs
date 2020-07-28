@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./components/scripts") %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("./components/header") %>
+    <main class="container">
+      <h3>Youtube Video Downloader (Legit)</h3>
+      <div class="form-group">
+        <input
+          id="url-input"
+          class="form-control"
+          placeholder="https://www.youtube.com/watch?v=MtN1YnoL46Q"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          class="convert-button form-control"
+          id="mp4"
+          onclick="window.location.href='/convert/ytmp4?url='+$('#url-input').val();"
+        >
+          Convert to MP4
+        </button>
+      </div>
+      <div class="form-group">
+        <button
+          class="convert-button form-control"
+          id="mp3"
+          onclick="window.location.href='/convert/ytmp3?url='+$('#url-input').val();"
+        >
+          Convert to MP3
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

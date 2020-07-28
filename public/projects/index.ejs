@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Home -->
+
+    <head>
+        <%- include("../components/scripts") %>
+        <title>Home</title>
+    </head>
+
+    <body>
+        <%- include("../components/header") %>
+        <div class="container mt-4 mb-4">
+            <h1 class="page-title">Projects</h1>
+            <p>
+                <%= projectsWorkedOn %> Projects
+            </p>
+            <% var query = ""; %>
+            <div class="search-container">
+                <form action="/projects?search='<%= query %>'">
+                    <div class="form-group">
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Search query..."
+                            name="search"
+                            value="<%= query %>"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <button
+                            class="form-control btn btn-primary"
+                            type="submit"
+                        >
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="githubProjects">
+                <% githubProjects.forEach(project => { %> <% if(!project.fork) {
+                %>
+                <div class="border-panel card mt-4">
+                    <div class="card-body">
+                        <h2 class="post-title card-title">
+                            <a
+                                target="_blank"
+                                href="<%= project.homepage || project.html_url %>"
+                            >
+                                <%= project.name.split("-").map(s =>
+                                s[0].toUpperCase() + s.substr(1)).join(" "); %>
+                            </a>
+                        </h2>
+                        <a
+                            class="text-muted card-subtitle"
+                            target="_blank"
+                            href="<%= project.html_url %>"
+                            >Source Code</a
+                        >
+                        <div class="post-description card-text">
+                            <p><%= project.description %></p>
+                        </div>
+                    </div>
+                </div>
+                <% } %> <% }); %>
+            </div>
+        </div>
+        <%- include("../components/footer") %>
+    </body>
+</html>

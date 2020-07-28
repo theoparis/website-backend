@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Blog Index -->
+
+<head>
+    <%- include("../../../components/scripts") %>
+        <title>Blog Admin - Delete Post</title>
+</head>
+
+<body>
+    <%- include("../../../components/header") %>
+        <main class="container">
+            <h2>Delete Post</h2>
+            <form id="delete-post">
+                <div class="form-group">
+                    <label for="title">Post title</label>
+                    <input class="form-control" type="text" id="title" name="title" required placeholder="Enter post title">
+                </div>
+                <input type="submit" class="form-control btn btn-danger" value="Delete">
+            </form>
+        </main>
+        <!-- Includes Components Such As Header -->
+        <script src="/js/index.js"></script>
+        <script src="/js/blog-delete.js"></script>
+</body>
+
+</html>

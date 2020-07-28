@@ -1,0 +1,52 @@
+<header>
+    <div id="branding">
+        <a class="navbar-brand highlight" href="/">
+            <!-- Brand Name -->
+            <h1 id="brand-name">Theo Paris Designs</h1>
+        </a>
+    </div>
+    <nav class="navbar navbar-default">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span data-feather="menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav">
+                <li class="navlink">
+                    <a class="red-text" href="/about">About</a>
+                </li>
+                <li class="navlink">
+                    <a class="red-text" href="/projects">Projects</a>
+                </li>
+                <li class="navlink">
+                    <a class="red-text" href="/blog">Blog</a>
+                </li>
+                <li class="navlink">
+                    <a class="red-text" href="/dashboard">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div id="error" style="display: none;">
+    <div class="alert alert-danger alert-dismissible fade show">
+        <div id="error-message">
+            <% if(locals.error != null && locals.error != "") { %>
+            <script>
+                $('#error').show()
+            </script>
+            <%= error %> <% } %>
+        </div>
+        <button type="button" class="close" data-dismiss="alert">
+            &times;
+        </button>
+    </div>
+</div>

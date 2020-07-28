@@ -1,0 +1,486 @@
+body {
+    background-color: #555555;
+    color: white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar-brand {
+    padding-top: 25px;
+}
+
+/* Header */
+header {
+    background-color: #2e2e2e;
+    z-index: 1;
+    overflow: hidden;
+    background-size: cover;
+    /* margin-bottom: 20px; */
+    top: 0;
+    left: 0;
+    position: relative;
+    height: auto;
+    min-height: 120px;
+    /* position: fixed;  */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: #0099cc 5px solid;
+}
+
+header h1 {
+    color: #3877be;
+}
+
+.red-text {
+    /* Red w/ White Outline */
+    color: #00bfff;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    /* --- */
+}
+
+.active {
+    transform: scale(75%);
+}
+
+header nav ul a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header nav ul a:hover {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+header nav ul a:active {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+header ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+header li {
+    padding: 0 20px 0 20px;
+    /* border-right: 4px solid #ffffff; */
+    text-align: center;
+    list-style-type: none;
+}
+/* ----- */
+
+.navlink {
+    margin-bottom: 10px;
+}
+
+main h2 {
+    color: #0099cc;
+}
+
+.page-title {
+    color: #00bfff;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    font-weight: bold;
+}
+
+main {
+    padding-top: 20px;
+}
+
+.search-container {
+    width: 100%;
+}
+
+.card-body,
+.card {
+    background-color: #4d4d4d;
+    border-radius: 8px;
+}
+
+a {
+    color: #48e5c2;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #154cc2;
+    font-weight: bold;
+}
+
+#posts-container .card-subtitle {
+    color: rgb(206, 204, 204);
+}
+
+#dashboard {
+    text-align: center;
+}
+
+#welcome {
+    margin-bottom: 50px;
+}
+
+#about-me {
+    text-align: center;
+    position: relative;
+    height: auto;
+    /* Flex  */
+    display: flex;
+    justify-content: center;
+}
+
+#about-me p {
+    max-width: 400px;
+    display: inline-block;
+}
+
+#cody {
+    height: auto;
+    width: 175px;
+}
+
+#theo {
+    height: auto;
+    width: 175px;
+    /* float: left; */
+}
+
+#branding a {
+    position: relative;
+}
+
+#branding a h1 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 38px;
+}
+
+header nav {
+    padding-right: 15px;
+    position: relative;
+}
+
+.navbar-toggler {
+    margin-bottom: 15px;
+    width: 100%;
+    color: #fff;
+}
+
+#services {
+    float: right;
+    padding-top: 25px;
+}
+
+#services h1 {
+    float: center;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    position: relative;
+    top: 10%;
+    font-size: 18px;
+}
+
+.service ul {
+    list-style-type: none;
+}
+
+.service {
+    float: center;
+    color: white;
+    padding: 10px;
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    text-align: center;
+    background-color: #0099cc;
+    border: 2px #fff solid;
+}
+
+.service p {
+    float: center;
+    color: white;
+    position: relative;
+    top: 10%;
+    font-size: 14px;
+}
+
+.service h2 {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    position: relative;
+}
+
+.service a {
+    color: #000000;
+    text-align: center;
+    float: center;
+    position: relative;
+}
+
+.service a:hover {
+    font-size: 18px;
+    font-weight: normal;
+    color: #ffffff;
+    text-align: left;
+    float: center;
+    position: relative;
+}
+
+#boxes .box a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #48e5c2;
+    text-align: center;
+    float: center;
+    position: relative;
+}
+
+#boxes .box a:hover {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    float: center;
+    position: relative;
+}
+
+/*Music*/
+
+#soundcloud-link {
+    font-weight: semi-bold;
+}
+
+.workinprogress-section {
+    background-color: #ffae00;
+    float: right;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    top: 60%;
+    width: 60%;
+    height: 300px;
+    border: 2px #fff solid;
+}
+
+.workinprogress-section h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff3801;
+}
+
+.workinprogress-section h1 {
+    font-size: 38px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.workinprogress-section a {
+    font-size: 20px;
+    font-weight: normal;
+    color: #ff3801;
+}
+
+.workinprogress-section a:hover {
+    font-size: 24px;
+    font-weight: normal;
+    color: #ff3801;
+}
+
+#music {
+    float: right;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    top: 60%;
+    width: 60%;
+    height: 300px;
+    background-color: #0099cc;
+    border: 2px #fff solid;
+}
+
+#music h1 {
+    font-size: 38px;
+    font-weight: bold;
+    color: #fff;
+}
+
+#music h2 {
+    font-size: 30px;
+    text-align: left;
+    font-weight: bold;
+    position: relative;
+}
+
+#music a {
+    font-size: 20px;
+    font-weight: normal;
+    color: #ffca37;
+    text-align: center;
+    float: center;
+    position: relative;
+}
+
+.blue {
+    padding: 15px;
+    background: #0099cc;
+    color: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#featuredbox {
+    color: #ffffff;
+}
+
+/* showcase */
+
+.showcase-banner {
+    height: 450px;
+    top: 25px;
+    width: 100%;
+    position: relative;
+    background-image: url('../../assets/creepinson.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: scroll;
+    background-position: center center;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+#showcase {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#showcase h1 {
+    font-size: 55px;
+    margin-top: 10px;
+    padding-top: 1440 / vh;
+}
+
+#showcase p {
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+}
+
+#boxes {
+    position: relative;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+#boxes .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-basis: 30%;
+    height: 200px;
+    margin-right: auto;
+    padding: 10px;
+}
+
+#boxes .box p {
+    font-size: 14px;
+}
+
+#boxes .box img {
+    width: 90px;
+}
+
+aside#sidebar {
+    float: right;
+    width: 50%;
+    margin-top: 10px;
+}
+
+article#main-col {
+    float: left;
+    font-size: 18px;
+    position: absolute;
+    top: 30%;
+    width: 50%;
+    height: 20%;
+}
+
+#page-title {
+    font-size: 22px;
+}
+
+article#main-col p {
+    font-size: 18px;
+}
+
+footer {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    bottom: 0;
+    left: 0;
+    position: relative;
+    background-color: #0099cc;
+    height: 50px;
+    width: 100%;
+}
+
+footer p {
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+#music a:hover {
+    font-size: 24px;
+    font-weight: normal;
+    color: #ffffff;
+    text-align: center;
+    float: center;
+    position: relative;
+}
+
+.wrap {
+    white-space: initial;
+    word-wrap: break-word;
+    clear: both;
+    overflow: hidden;
+}
+
+/* Mobile Screens */
+
+@media only screen and (max-width: 768px) {
+    #theo {
+        width: 125px;
+    }
+    #cody {
+        width: 125px;
+    }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../components/scripts") %>
+    <title>Store</title>
+  </head>
+  <body>
+    <%- include("../components/header") %>
+    <main class="container">
+      <h2>Welcome to my store!</h2>
+      <section class="products">
+        <% if(products.length != 0) { %> <% products.forEach(p => { %>
+        <div class="product-card">
+          <img src="<%= p.images[0] %>">
+          <div class="product-info">
+            <h5 c><a href="<%= p.url %>"><%= p.name %></a></h5>
+            <p><%= p.caption %></p>
+            <h6>$<%= p.skus[0].price/100 %></h6>
+          </div>
+        </div>
+        <%})%>
+        <% } else { %>
+          <h2>No Products</h2>
+          <p>There are no products available at this time. Please check back later.</p>
+        <%}%>
+      </ul>
+    </main>
+    <%- include("../components/footer") %>
+  </body>
+</html>

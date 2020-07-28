@@ -1,0 +1,8 @@
+<% if(googleUrl) { %>
+<script>
+  document.location.href = '<%= googleUrl %>'.replace(/&amp;/g, "&")
+</script>
+<% } else { %>
+<h1>Internal Server Error</h1>
+<p>The google redirect url is invalid. Please go back and try again.</p>
+<% } %>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Blog Index -->
+
+    <head>
+        <%- include("../components/scripts") %>
+        <title>Dashboard - Register</title>
+    </head>
+
+    <body>
+        <%- include("../components/header") %>
+        <main class="container">
+            <h2>Register</h2>
+            <form id="register" action="/api/auth/user/create" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="Enter name"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
+                        placeholder="Enter username (unique)"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        class="form-control"
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        placeholder="Enter password"
+                    />
+                </div>
+                <input
+                    type="submit"
+                    class="form-control btn btn-primary"
+                    value="Register"
+                />
+            </form>
+        </main>
+        <!-- Includes Components Such As Header -->
+        <script src="/js/index.js"></script>
+    </body>
+</html>

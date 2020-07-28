@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dashboard</title>
+        <%- include("../components/scripts") %>
+    </head>
+
+    <body>
+        <%- include("../components/header") %>
+        <main id="dashboard" class="container">
+            <% if(session.user) { %>
+            <div id="dashboard-container">
+                <h2>Dashboard</h2>
+                <p id="welcome">
+                    Welcome, <%= session.user.name %>.
+                </p>
+                <a href="/api/auth/logout"><button>Log Out</button></a>
+            </div>
+            <% } else { %>
+            <h2>You are not logged in! Redirecting you to the login page.</h2>
+            <script>
+                setTimeout(() => {
+                    window.location.href = '/dashboard/login'
+                }, 2500)
+            </script>
+            <% }%>
+        </main>
+        <%- include("../components/footer") %>
+        <script src="/js/index.js"></script>
+        <script src="/js/dashboard.js"></script>
+    </body>
+</html>
