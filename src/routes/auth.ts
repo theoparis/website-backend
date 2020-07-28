@@ -53,10 +53,7 @@ const router = express.Router();
 
 // User Profile
 router.post("/profile", loggedIn, async (req: Request, res: Response) => {
-    res.json({
-        username: req.user.username,
-        picture: req.user.picture,
-    });
+    res.json(stripCredentials(req.user));
 });
 
 // Registration
@@ -82,7 +79,6 @@ router.post(
                 }),
                 req.body.password,
             );
-            // await User.authenticate()(req.body.u);
             res.json(user);
         } catch (err) {
             res.status(500).json({ message: err.toString() });
@@ -101,7 +97,8 @@ router.post("/user", async (req, res, next) => {
         if (err) return next(err);
         if (!user) return res.status(404).json({ message: "User not found" });
         req.logIn(user, function (err) {
-            if (err) return res.status(401).json({ message: "Invalid credentials"})
+            if (err)
+                return res.status(401).json({ message: "Invalid credentials" });
 
             // If this function gets called, authentication was successful.
             // `req.user` contains the authenticated user.

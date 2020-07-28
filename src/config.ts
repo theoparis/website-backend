@@ -73,6 +73,7 @@ export async function loggedIn(
 
 export const stripCredentials = (user: any) => ({
     username: user.username,
+    name: user.name,
     roles: user.roles,
     providers: user.providers,
     _id: user._id,
