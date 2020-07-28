@@ -16,7 +16,7 @@ import { urlGoogle } from "./google-util";
 import { initializePassport } from "./config";
 
 // Create http server using express
-const app = express();
+export const app = express();
 
 /* 
 If we don't use this, accessing the api from the frontend
@@ -141,5 +141,4 @@ app.use("/", router);
  If this is the last route, it can be used as a 404 handler.
  */
 app.use("*", error404);
-export const App = app;
 export const handler = serverless(app);

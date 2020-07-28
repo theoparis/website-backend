@@ -6,7 +6,8 @@
     "main": "dist/server.js",
     "scripts": {
         "build": "tsc -p ./tsconfig.json",
-        "start": "nodemon"
+        "dev": "nodemon",
+        "start": "ts-node src/server.ts"
     },
     "keywords": [],
     "author": "Theo Paris",
