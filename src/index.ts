@@ -134,7 +134,7 @@ const error404 = (req, res, html) => {
     res.status(404).send("<h1>404</h1><h2>Requested Resource Not Found</h2>");
 };
 
-app.use("/api", router);
+app.use("/", router);
 
 /*
  Handle all routes that do not match the others.
