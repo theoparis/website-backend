@@ -5,6 +5,7 @@ import { User, permissionLevels, loggedIn, stripCredentials } from "../config";
 import { getGoogleAccountFromCode } from "../google-util";
 import { PassportLocalDocument } from "mongoose";
 import passport from "passport";
+// TODO: remove this file
 
 const router = express.Router();
 /* router.get("/google", async (req, res) => {
@@ -52,7 +53,7 @@ const router = express.Router();
 }); */
 
 // User Profile
-router.post("/profile", loggedIn, async (req: Request, res: Response) => {
+router.get("/profile", loggedIn, async (req: Request, res: Response) => {
     res.json({ user: stripCredentials(req.user) });
 });
 

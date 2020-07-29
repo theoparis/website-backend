@@ -3,8 +3,8 @@ dependencies:
   '@types/cors': 2.8.6
   '@types/express': 4.17.7
   '@types/express-flash': 0.0.2
+  '@types/express-rate-limit': 5.0.0
   '@types/express-session': 1.17.0
-  '@types/express-validator': 3.0.0
   '@types/jsonwebtoken': 8.5.0
   '@types/mongodb': 3.5.25
   '@types/mongoose': 5.7.32
@@ -21,6 +21,9 @@ dependencies:
   ejs: 3.1.3
   express: 4.17.1
   express-flash: 0.0.2
+  express-jwt-enhanced: 1.1.0
+  express-rate-limit: 5.1.3
+  express-route-system: 1.0.4
   express-session: 1.17.1
   express-validator: 6.6.0
   googleapis: 56.0.0
@@ -100,6 +103,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-1l0s3YiZpMkWZ/65S4iSOLOnI7bYNDgnxx54nw5eA2pWOZ7Vvc7PpDv6iJq0bB7EBusoVWkzd+RV4r/nLY4/HA==
+  /@types/express-rate-limit/5.0.0:
+    dependencies:
+      '@types/express': 4.17.7
+    dev: false
+    resolution:
+      integrity: sha512-tVRtvshGIYTNiUET3XJaONn1Li0V9mhi9Tb23Kf3rJ19hsgbCywkZBOf5Xhd9OXBO0Ssw7B+qAHL77xe/TiqUw==
   /@types/express-serve-static-core/4.17.9:
     dependencies:
       '@types/node': 14.0.26
@@ -115,13 +124,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-OQEHeBFE1UhChVIBhRh9qElHUvTp4BzKKHxMDkGHT7WuYk5eL93hPG7D8YAIkoBSbhNEY0RjreF15zn+U0eLjA==
-  /@types/express-validator/3.0.0:
-    dependencies:
-      express-validator: 6.6.0
-    deprecated: 'This is a stub types definition for express-validator (https://github.com/ctavan/express-validator). express-validator provides its own type definitions, so you don''t need @types/express-validator installed!'
-    dev: false
-    resolution:
-      integrity: sha512-LusnB0YhTXpBT25PXyGPQlK7leE1e41Vezq1hHEUwjfkopM1Pkv2X2Ppxqh9c+w/HZ6Udzki8AJotKNjDTGdkQ==
   /@types/express/4.17.7:
     dependencies:
       '@types/body-parser': 1.19.0
@@ -166,6 +168,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
+  /@types/node/14.0.27:
+    dev: false
+    resolution:
+      integrity: sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
   /@types/passport-jwt/3.0.3:
     dependencies:
       '@types/express': 4.17.7
@@ -309,6 +315,15 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-3duEwti880xqi4eAMN8AyR4a0ByT90zoYdLlevfrvU43vb0YZwZVfxOgxWrLXXXpyugL0hNZc9G6BiB5B3nUug==
+  /async-redis/1.1.7:
+    dependencies:
+      redis: 2.8.0
+      redis-commands: 1.6.0
+    dev: false
+    engines:
+      node: '>=7.6.0'
+    resolution:
+      integrity: sha512-phpZe2/U+Ih4Lpy72KWF4+c8gymsUgzg6NV/TZUb8BLNn7soQewFxqcq9nndobfPmzXiuhMLi6GNBiQVIor/EA==
   /async/0.9.2:
     dev: false
     resolution:
@@ -670,6 +685,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+  /double-ended-queue/2.1.0-0:
+    dev: false
+    resolution:
+      integrity: sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
   /duplexer3/0.1.4:
     dev: true
     resolution:
@@ -750,6 +769,27 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha1-I9GovPP5DXB5KOSJ+Whp7K0KzaI=
+  /express-jwt-enhanced/1.1.0:
+    dependencies:
+      async-redis: 1.1.7
+      jwt-simple: 0.5.6
+      svg-captcha: 1.4.0
+      uniqid: 5.2.0
+    dev: false
+    resolution:
+      integrity: sha512-syME2q0I8zAdek5L0oScVYOXmHZiFU9GzW/YPswoQckO77ZWtLYlzyV/5GaRt26zA5PSA4qhgsvaFp993BgD2w==
+  /express-rate-limit/5.1.3:
+    dev: false
+    resolution:
+      integrity: sha512-TINcxve5510pXj4n9/1AMupkj3iWxl3JuZaWhCdYDlZeoCPqweGZrxbrlqTCFb1CT5wli7s8e2SH/Qz2c9GorA==
+  /express-route-system/1.0.4:
+    dependencies:
+      '@types/express': 4.17.7
+      '@types/node': 14.0.27
+      express: 4.17.1
+    dev: false
+    resolution:
+      integrity: sha512-ReDC14djNN5FLqDlanqYDvVP3BStfAX+LFnJadno7GjRfuPTf4zCR4RAdwV08lyZ6yOvPRXMVEvBAqaB/g6o4A==
   /express-session/1.17.1:
     dependencies:
       cookie: 0.4.0
@@ -1279,6 +1319,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-KDncfTmOZoOMTFG4mBlG0qUIOlc03fmzH+ru6RgYVZhPkyiy/92Owlt/8UEN+a4TXR1FQetfIpJE8ApdvdVxTg==
+  /jwt-simple/0.5.6:
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha512-40aUybvhH9t2h71ncA1/1SbtTNCVZHgsTsTgqPUxGWDmUDrXyDf2wMNQKEbdBjbf4AI+fQhbECNTV6lWxQKUzg==
   /kareem/2.3.1:
     dev: false
     resolution:
@@ -1598,6 +1644,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
+  /opentype.js/0.7.3:
+    dependencies:
+      tiny-inflate: 1.0.3
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha1-QPuM4Yv9YOdESO/f5EKDQJg5eqs=
   /p-cancelable/1.1.0:
     dev: true
     engines:
@@ -1779,6 +1832,26 @@ packages:
       node: '>=8.10.0'
     resolution:
       integrity: sha512-0xe001vZBnJEK+uKcj8qOhyAKPzIT+gStxWr3LCB0DwcXR5NZJ3IaC+yGnHCYzB/S7ov3m3EEbZI2zeNvX+hGQ==
+  /redis-commands/1.6.0:
+    dev: false
+    resolution:
+      integrity: sha512-2jnZ0IkjZxvguITjFTrGiLyzQZcTvaw8DAaCXxZq/dsHXz7KfMQ3OUJy7Tz9vnRtZRVz6VRCPDvruvU8Ts44wQ==
+  /redis-parser/2.6.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-Uu0J2srBCPGmMcB+m2mUHnoZUEs=
+  /redis/2.8.0:
+    dependencies:
+      double-ended-queue: 2.1.0-0
+      redis-commands: 1.6.0
+      redis-parser: 2.6.0
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-M1OkonEQwtRmZv4tEWF2VgpG0JWJ8Fv1PhlgT5+B+uNq2cA3Rt1Yt/ryoR+vQNOQcIEgdCdfH0jr3bDpihAw1A==
   /regexp-clone/1.0.0:
     dev: false
     resolution:
@@ -2028,12 +2101,24 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-oRSIpR8pxT1Wr2FquTNnGet79b3BWljqOuoW/h4oBhxJ/HUbX5nX6JSruTkvXDCFMwDPvsaTTbvMLKZWSy0R5g==
+  /svg-captcha/1.4.0:
+    dependencies:
+      opentype.js: 0.7.3
+    dev: false
+    engines:
+      node: '>=4.x'
+    resolution:
+      integrity: sha512-/fkkhavXPE57zRRCjNqAP3txRCSncpMx3NnNZL7iEoyAtYwUjPhJxW6FQTQPG5UPEmCrbFoXS10C3YdJlW7PDg==
   /term-size/2.2.0:
     dev: true
     engines:
       node: '>=8'
     resolution:
       integrity: sha512-a6sumDlzyHVJWb8+YofY4TW112G6p2FCPEAFk+59gIYHv3XHRhm9ltVQ9kli4hNWeQBwSpe8cRN25x0ROunMOw==
+  /tiny-inflate/1.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==
   /to-readable-stream/1.0.0:
     dev: true
     engines:
@@ -2099,6 +2184,7 @@ packages:
     resolution:
       integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   /typescript/3.9.7:
+    dev: false
     engines:
       node: '>=4.2.0'
     hasBin: true
@@ -2118,6 +2204,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-nrXZwwXrD/T/JXeygJqdCO6NZZ1L66HrxM/Z7mIq2oPanoN0F1nLx3lwJMu6AwJY69hdixaFQOuoYsMjE5/C2A==
+  /uniqid/5.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-LH8zsvwJ/GL6YtNfSOmMCrI9piraAUjBfw2MCvleNE6a4pVKJwXjG2+HWhkVeFcSg+nmaPKbMrMOoxwQluZ1Mg==
   /unique-string/2.0.0:
     dependencies:
       crypto-random-string: 2.0.0
@@ -2248,12 +2338,12 @@ specifiers:
   '@types/cors': ^2.8.6
   '@types/express': ^4.17.7
   '@types/express-flash': 0.0.2
+  '@types/express-rate-limit': ^5.0.0
   '@types/express-session': ^1.17.0
-  '@types/express-validator': ^3.0.0
   '@types/jsonwebtoken': ^8.5.0
   '@types/mongodb': ^3.5.25
-  '@types/mongoose': ^5.7.32
-  '@types/node': ^14.0.26
+  '@types/mongoose': ^5.7.34
+  '@types/node': ^14.0.27
   '@types/node-fetch': ^2.5.7
   '@types/passport': ^1.0.4
   '@types/passport-jwt': ^3.0.3
@@ -2266,12 +2356,15 @@ specifiers:
   ejs: ^3.1.3
   express: ^4.17.1
   express-flash: 0.0.2
+  express-jwt-enhanced: ^1.1.0
+  express-rate-limit: ^5.1.3
+  express-route-system: ^1.0.4
   express-session: ^1.17.1
   express-validator: ^6.6.0
-  googleapis: ^56.0.0
+  googleapis: ^57.0.0
   https: ^1.0.0
   jsonwebtoken: ^8.5.1
-  mongoose: ^5.9.25
+  mongoose: ^5.9.26
   node-fetch: ^2.6.0
   nodemon: ^2.0.4
   passport: ^0.4.1
@@ -2283,4 +2376,4 @@ specifiers:
   ts-node: ^8.10.2
   typescript: ^3.9.7
   vhost-ts: ^4.0.0
-  ytdl-core: ^3.1.3
+  ytdl-core: ^3.2.0

@@ -4,6 +4,7 @@ import { body, validationResult } from "express-validator";
 import { Post, hasRole, permissionLevels, loggedIn } from "../../config";
 import { authenticate } from "passport";
 
+// TODO: remove this file
 const router = express.Router();
 
 router.get("/posts", async (req, res) => {
@@ -67,7 +68,7 @@ router.post(
             });
         }
         req.body.createdAt = new Date().getTime();
-        req.body.author = req.user.username;
+        req.body.author = req.user.name;
         if (!req.body.category) req.body.category = "Uncategorized";
         Post.updateOne({ title: req.body.title }, req.body, {
             upsert: true,

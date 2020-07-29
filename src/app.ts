@@ -6,12 +6,13 @@ import session from "express-session";
 import cors from "cors";
 import ytdl from "ytdl-core";
 import passport from "passport";
-
+import rateLimit from "express-rate-limit";
+import { handleRoutes } from "express-route-system";
 import { Project } from "./config";
-import { authRouter } from "./routes/auth";
-import { blogRouter } from "./routes/blog/blog";
+// import { authRouter } from "./routes/auth";
+// import { blogRouter } from "./routes/blog/blog";
 
-import { storeRouter } from "./routes/store";
+// import { storeRouter } from "./routes/store";
 import { urlGoogle } from "./google-util";
 import { initializePassport } from "./config";
 
@@ -53,6 +54,12 @@ app.use(
         saveUninitialized: true,
     }),
 );
+app.use(
+    rateLimit({
+        windowMs: 15 * 60 * 1000, // 15 minutes
+        max: 100, // limit each IP to 100 requests per windowMs
+    }),
+);
 app.use(passport.initialize());
 // persistent login sessions
 app.use(passport.session());
@@ -78,26 +85,7 @@ router.get("/convert/ytmp4", (req, res) => {
     ytdl(url, {}).pipe(res);
 });
 
-router.get("/", (_, res) => {
-    res.json({ message: "Hello, world! This is an api." });
-});
-
-router.use("/auth", authRouter);
-router.use("/store", storeRouter);
-router.use("/blog", blogRouter);
-router.get("/projects", async (req, res) => {
-    let projectsList = await Project.find({});
-    if (req.query.search)
-        projectsList = projectsList.filter(
-            (p) =>
-                p.get("name") != "" &&
-                p
-                    .get("name")
-                    .toLowerCase()
-                    .includes(req.query.search as string),
-        );
-    res.json(projectsList);
-});
+handleRoutes({ routeFile: "routes", router, debug: true });
 
 router.get("/dashboard/google", (_, res) => {
     res.render("dashboard/google", { googleUrl: urlGoogle() });
@@ -147,15 +135,10 @@ app.use('*', (req, res, next) => {
 }) */
 
 // Error handling
-const error404 = (req, res, html) => {
-    res.status(404).send("<h1>404</h1><h2>Requested Resource Not Found</h2>");
-};
-
-app.use("/", router);
 
 /*
  Handle all routes that do not match the others.
  If this is the last route, it can be used as a 404 handler.
  */
-app.use("*", error404);
+app.use("/", router);
 export const handler = serverless(app);
