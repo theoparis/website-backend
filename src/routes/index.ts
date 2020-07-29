@@ -82,10 +82,6 @@ export default [
                                             return res
                                                 .status(400)
                                                 .json({ error });
-                                        if (!user)
-                                            return res.status(404).json({
-                                                message: "User not found",
-                                            });
                                         req.logIn(user, function (err) {
                                             if (err)
                                                 return res.status(401).json({
@@ -235,7 +231,7 @@ export default [
                                     if (!errors.isEmpty()) {
                                         return res.status(422).json({
                                             errors: errors.array(),
-                                            message: "Invalid post details",
+                                            message: "Invalid post details.",
                                         });
                                     }
                                     req.body.createdAt = new Date().getTime();
