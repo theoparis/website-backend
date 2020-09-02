@@ -5,9 +5,9 @@
     "private": true,
     "main": "dist/server.js",
     "scripts": {
-        "build": "tsc -p ./tsconfig.json",
+        "build": "tsc",
         "dev": "nodemon",
-        "start": "ts-node --files src/server.ts"
+        "start": "node dist/server.js"
     },
     "keywords": [],
     "author": "Theo Paris",
