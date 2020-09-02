@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        "target": "esnext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */,
+        "target": "es2019" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */,
+        "module": "commonjs",
         "outDir": "dist" /* Redirect output structure to the directory. */,
         "downlevelIteration": true /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */,
         "noImplicitAny": false /* Raise error on expressions and declarations with an implied 'any' type. */,
