@@ -8,6 +8,7 @@ dependencies:
   '@types/jsonwebtoken': 8.5.0
   '@types/mongodb': 3.5.27
   '@types/mongoose': 5.7.36
+  '@types/morgan': 1.9.1
   '@types/node': 14.6.4
   '@types/node-fetch': 2.5.7
   '@types/passport': 1.0.4
@@ -29,6 +30,7 @@ dependencies:
   https: 1.0.0
   jsonwebtoken: 8.5.1
   mongoose: 5.10.3_mongoose@5.10.3
+  morgan: 1.10.0
   node-fetch: 2.6.1
   passport: 0.4.1
   passport-jwt: 4.0.0
@@ -157,6 +159,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ggFXgvkHgCNlT35B9d/heDYfSqOSwTmQjkRoR32sObGV5Xjd0N0WWuYlLzqeCg94j4hYN/OZxZ1VNNLltX/IVQ==
+  /@types/morgan/1.9.1:
+    dependencies:
+      '@types/node': 14.6.4
+    dev: false
+    resolution:
+      integrity: sha512-2j5IKrgJpEP6xw/uiVb2Xfga0W0sSVD9JP9t7EZLvpBENdB0OKgcnoKS8IsjNeNnZ/86robdZ61Orl0QCFGOXg==
   /@types/node-fetch/2.5.7:
     dependencies:
       '@types/node': 14.6.4
@@ -349,6 +357,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
+  /basic-auth/2.0.1:
+    dependencies:
+      safe-buffer: 5.1.2
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==
   /bcryptjs/2.4.3:
     dev: false
     resolution:
@@ -1698,6 +1714,18 @@ packages:
       mongoose: '*'
     resolution:
       integrity: sha512-FLemltuzcsCHlFpEZ3bYOiNhJfHful+GoS+3uRgdEWGlY0HKfOjm9xsISM/tql8vRvhjr7qveuRfoBBGO3xNtw==
+  /morgan/1.10.0:
+    dependencies:
+      basic-auth: 2.0.1
+      debug: 2.6.9
+      depd: 2.0.0
+      on-finished: 2.3.0
+      on-headers: 1.0.2
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    resolution:
+      integrity: sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==
   /mpath/0.7.0:
     dev: false
     engines:
@@ -2731,6 +2759,7 @@ specifiers:
   '@types/jsonwebtoken': ^8.5.0
   '@types/mongodb': ^3.5.27
   '@types/mongoose': ^5.7.36
+  '@types/morgan': ^1.9.1
   '@types/node': ^14.6.4
   '@types/node-fetch': ^2.5.7
   '@types/passport': ^1.0.4
@@ -2752,6 +2781,7 @@ specifiers:
   https: ^1.0.0
   jsonwebtoken: ^8.5.1
   mongoose: ^5.10.3
+  morgan: ^1.10.0
   node-fetch: ^2.6.1
   nodemon: ^2.0.4
   passport: ^0.4.1

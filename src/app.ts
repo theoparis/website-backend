@@ -7,8 +7,9 @@ import cors from "cors";
 import ytdl from "ytdl-core";
 import passport from "passport";
 import rateLimit from "express-rate-limit";
-import { initializePassport } from "./config";
+import { initializePassport, debug } from "./config";
 import router from "./routes";
+import morgan from "morgan";
 
 // Create http server using express
 export const app = express();
@@ -60,6 +61,12 @@ app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(flash());
+app.disable("etag");
+
+if (debug)
+    app.use(
+        morgan(":method :url :status :res[content-length] - :response-time ms"),
+    );
 
 initializePassport(passport);
 

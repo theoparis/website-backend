@@ -3,7 +3,6 @@ import express, { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { Post, hasRole, permissionLevels, loggedIn } from "../../config";
 
-// TODO: remove this file
 const router = express.Router();
 
 router.get("/posts", async (req, res) => {

@@ -14,6 +14,8 @@ if (result.error) {
     process.env = result.parsed || process.env;
 }
 
+export const debug = process.env.DEBUG;
+
 export const dbUrl =
     process.env.MONGO_URI || "mongodb://localhost:27017/website";
 export const permissionLevels = {
