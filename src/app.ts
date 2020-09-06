@@ -65,7 +65,7 @@ app.disable("etag");
 
 if (debug)
     app.use(
-        morgan(":method :url :status :res[content-length] - :response-time ms"),
+        morgan(":method :url :status - :response-time ms"),
     );
 
 initializePassport(passport);
