@@ -2,7 +2,6 @@ import express, { Request, Response } from "express";
 
 import { body, validationResult } from "express-validator";
 import { Post, hasRole, permissionLevels, loggedIn } from "../../config";
-import { authenticate } from "passport";
 
 // TODO: remove this file
 const router = express.Router();

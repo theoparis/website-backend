@@ -2,5 +2,5 @@
     "watch": ["src/**/*.ts"],
     "ext": "ts",
     "ignore": ["src/**/*.spec.ts"],
-    "exec": "pnpx ts-node --files src/server.ts"
+    "exec": "pnpx ts-node-dev --respawn --transpile-only --files src/server.ts"
 }

@@ -7,14 +7,8 @@ import cors from "cors";
 import ytdl from "ytdl-core";
 import passport from "passport";
 import rateLimit from "express-rate-limit";
-import { handleRoutes } from "express-route-system";
-import { Project } from "./config";
-// import { authRouter } from "./routes/auth";
-// import { blogRouter } from "./routes/blog/blog";
-
-// import { storeRouter } from "./routes/store";
-import { urlGoogle } from "./google-util";
 import { initializePassport } from "./config";
+import router from "./routes";
 
 // Create http server using express
 export const app = express();
@@ -69,27 +63,6 @@ app.use(flash());
 
 initializePassport(passport);
 
-const router = express.Router();
-
-router.get("/convert/ytmp3", (req, res) => {
-    const url = req.query.url.toString();
-    res.header("Content-Disposition", 'attachment; filename="audio.mp3"');
-    ytdl(url, {
-        filter: "audioonly",
-    }).pipe(res);
-});
-
-router.get("/convert/ytmp4", (req, res) => {
-    const url = req.query.url.toString();
-    res.header("Content-Disposition", 'attachment; filename="video.mp4"');
-    ytdl(url, {}).pipe(res);
-});
-
-handleRoutes({ routeFile: "routes", router, debug: true });
-
-router.get("/dashboard/google", (_, res) => {
-    res.render("dashboard/google", { googleUrl: urlGoogle() });
-});
 /* 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '..', 'public'))
