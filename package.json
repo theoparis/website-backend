@@ -1,7 +1,7 @@
 {
-    "name": "server",
+    "name": "website-backend",
     "version": "1.0.0",
-    "description": "",
+    "description": "Theo's api backend",
     "private": true,
     "main": "dist/server.js",
     "scripts": {
@@ -13,6 +13,7 @@
     },
     "keywords": [],
     "author": "Theo Paris",
+    "homepage": "https://api.theoparis.com",
     "license": "MIT",
     "dependencies": {
         "@types/bcryptjs": "^2.4.2",
