@@ -17,17 +17,25 @@ router.get("/", (_, res) => {
 });
 
 router.get("/convert/ytmp3", (req, res) => {
-    const url = req.query.url.toString();
-    res.header("Content-Disposition", 'attachment; filename="audio.mp3"');
-    ytdl(url, {
-        filter: "audioonly",
-    }).pipe(res);
+    try {
+        const url = req.query.url.toString();
+        res.header("Content-Disposition", 'attachment; filename="audio.mp3"');
+        ytdl(url, {
+            filter: "audioonly",
+        }).pipe(res);
+    } catch (err) {
+        res.status(400).end();
+    }
 });
 
 router.get("/convert/ytmp4", (req, res) => {
-    const url = req.query.url.toString();
-    res.header("Content-Disposition", 'attachment; filename="video.mp4"');
-    ytdl(url, {}).pipe(res);
+    try {
+        const url = req.query.url.toString();
+        res.header("Content-Disposition", 'attachment; filename="video.mp4"');
+        ytdl(url, {}).pipe(res);
+    } catch (err) {
+        res.status(400).end();
+    }
 });
 
 router.get("/dashboard/google", (_, res) => {
