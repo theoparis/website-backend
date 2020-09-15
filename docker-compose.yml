@@ -1,0 +1,21 @@
+version: "3"
+services:
+    app:
+        build:
+            context: .
+        restart: unless-stopped
+        build .
+        env_file: .env
+        ports:
+            - "8080:8080"
+        links:
+            - mongo
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo
+        restart: unless-stopped
+        env_file: .env
+        ports:
+            - "8080:8080"
+        
