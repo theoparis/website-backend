@@ -4,7 +4,6 @@ services:
         build:
             context: .
         restart: unless-stopped
-        build .
         env_file: .env
         ports:
             - "8080:8080"
@@ -18,4 +17,3 @@ services:
         env_file: .env
         ports:
             - "8080:8080"
-        
