@@ -63,10 +63,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 app.disable("etag");
 
-if (debug)
-    app.use(
-        morgan(":method :url :status - :response-time ms"),
-    );
+if (debug) app.use(morgan(":method :url :status - :response-time ms"));
 
 initializePassport(passport);
 
