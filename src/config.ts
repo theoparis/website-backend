@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import mongoose, { Schema } from "mongoose";
+import mongoose, { PassportLocalSchema, Schema } from "mongoose";
 import dotenv from "dotenv";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
