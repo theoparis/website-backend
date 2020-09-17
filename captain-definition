@@ -1,8 +1,8 @@
 {
     "schemaVersion": 2,
-      "dockerfileLines": [
+    "dockerfileLines": [
         "FROM node:current-alpine", 
         "COPY ./build /app", 
         "RUN chmod -R 777 /app"
-      ]
+    ]
 }
